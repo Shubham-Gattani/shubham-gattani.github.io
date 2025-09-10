@@ -1,17 +1,32 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shubham Gattani – Data Science • LLM • Full-Stack</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-    .hero { padding: 3rem 0; }
-    .skill-badge { margin: 0.15rem; font-size: .85rem; }
-    .card-img-top { object-fit: cover; height: 180px; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    .hero {
+      padding: 3rem 0;
+    }
+
+    .skill-badge {
+      margin: 0.15rem;
+      font-size: .85rem;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      height: 180px;
+    }
   </style>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
@@ -39,7 +54,8 @@
           <a class="btn btn-outline-secondary" href="resume.pdf" download>Download Resume</a>
         </div>
         <div class="col-md-4 text-center">
-          <img src="/assets/images/PROFILE_IMG.png" alt="profile" class="rounded-circle img-fluid" style="max-width:160px;">
+          <img src="/assets/images/PROFILE_IMG.png" alt="profile" class="rounded-circle img-fluid"
+            style="max-width:160px;">
         </div>
       </div>
     </div>
@@ -57,7 +73,9 @@
   <section id="about" class="py-5 bg-white">
     <div class="container">
       <h2>About</h2>
-      <p>After a spine injury interrupted my IIT Delhi journey in 2015, I restarted at IIT Madras and completed a BS in Data Science & Applications (CGPA 9.8). I build end-to-end apps combining data engineering, web development, and LLMs.</p>
+      <p>After a spine injury interrupted my IIT Delhi journey in 2015, I restarted at IIT Madras and completed a BS in
+        Data Science & Applications (CGPA 9.8). I build end-to-end apps combining data engineering, web development, and
+        LLMs.</p>
       <h5>Skills</h5>
       <div class="mb-3">
         <span class="badge bg-secondary skill-badge">Python</span>
@@ -72,29 +90,42 @@
 
   <footer id="contact" class="py-4 bg-light text-center">
     <div class="container">
-      <p class="mb-1">Open to remote roles • Email: <a href="mailto:shubham29.iitd@gmail.com">shubham29.iitd@gmail.com</a></p>
-      <p class="small mb-0">© 2025 Shubham Gattani — <a href="https://github.com/Shubham-Gattani" target="_blank">GitHub</a> • <a href="https://www.linkedin.com/in/shubham-gattani-ds/" target="_blank">LinkedIn</a></p>
+      <p class="mb-1">Open to remote roles • Email: <a
+          href="mailto:shubham29.iitd@gmail.com">shubham29.iitd@gmail.com</a></p>
+      <p class="small mb-0">© 2025 Shubham Gattani — <a href="https://github.com/Shubham-Gattani"
+          target="_blank">GitHub</a> • <a href="https://www.linkedin.com/in/shubham-gattani-ds/"
+          target="_blank">LinkedIn</a></p>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
     // Project data - just add new objects here to create more cards
     const projects = [
       {
         title: "Discourse-Viz — Student Engagement Dashboard",
-        description: "Full-stack analytics dashboard: ETL pipeline, REST APIs, interactive visualizations. Tech: Python, Flask, Pandas, Neo4j.",
+        description: "Full-stack analytics dashboard: ETL pipeline, REST APIs, interactive visualizations.",
+        tech: "Python, Flask, Pandas, Neo4j",
         image: "/assets/images/discourse-viz.png",
         readMoreLink: "projects/discourse-viz.html",
         githubLink: "https://github.com/YOUR_REPO"
       },
       {
         title: "Harnessing LLMs for Neuroscience Knowledge Exploration",
-        description: "Scraped & processed thousands of PubMed XML papers, used LLaMA-3.1 to extract normalized entities & relations, and built a Neo4j knowledge graph for research discovery. Tech: Python multiprocessing, JSON, NLP, Prompt Engineering, Web Scraping, Neo4j, Named Entity Recognition (NER)",
+        description: "Scraped & processed thousands of PubMed XML papers, used LLaMA-3.1 to extract normalized entities & relations, and built a Neo4j knowledge graph for research discovery.",
+        tech: "Python multiprocessing, JSON, NLP, Prompt Engineering, Web Scraping, Neo4j, Named Entity Recognition (NER)",
         image: "/assets/images/Knowledge-graph-project.png",
         readMoreLink: "projects/Knowledge-graph-project.html",
         githubLink: "https://github.com/YOUR_REPO"
+      },
+      {
+        title: "CODE-Chapter (SPOC Dashboard)",
+        description: "This web application enables college SPOCs (Single Point of Contact) to manage CODE Chapter related activities for their institution. SPOCs can view their own information, monitor student progress (courses enrolled, quiz marks), receive announcements, and request profile changes via an external form.",
+        tech: "Flask, Flask-Security-Too, SQLAlchemy 2, PostgreSQL, OTP based login, VueJS, Docker, Google Cloud Logging, Flask-Migrate/Alembic".replace(","," |"),
+        image: "/assets/images/code-chapter.png",
+        readMoreLink: "projects/code-chapter.html",
+        githubLink: "https://github.com/Shubham-Gattani/CODE-CHAPTER"
       }
       // Add more projects here - just copy the object structure above
     ];
@@ -102,7 +133,7 @@
     // Function to generate project cards
     function generateProjectCards() {
       const container = document.getElementById('projects-container');
-      
+
       projects.forEach(project => {
         const cardHTML = `
           <div class="col-md-6">
@@ -111,6 +142,7 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">${project.title}</h5>
                 <p class="card-text">${project.description}</p>
+                <p class="card-text"><strong>Tech:</strong> ${project.tech}</p>
                 <div class="mt-auto">
                   <a href="${project.readMoreLink}" class="btn btn-sm btn-primary me-2">Read more</a>
                   <a href="${project.githubLink}" target="_blank" class="btn btn-sm btn-outline-secondary">GitHub</a>
@@ -127,4 +159,5 @@
     document.addEventListener('DOMContentLoaded', generateProjectCards);
   </script>
 </body>
+
 </html>

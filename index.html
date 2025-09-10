@@ -71,20 +71,44 @@
     </div>
   </section>
 
-  <section id="about" class="py-5 bg-white">
-    <div class="container">
-      <h2>About</h2>
-      <p>After a spine injury interrupted my IIT Delhi journey in 2015, I restarted at IIT Madras and completed a BS in
-        Data Science & Applications (CGPA 9.8). I build end-to-end apps combining data engineering, web development, and
-        LLMs.</p>
-      <h5>Skills</h5>
-      <div class="mb-3">
-        <span class="badge bg-secondary skill-badge">Python</span>
-        <span class="badge bg-secondary skill-badge">Flask</span>
-        <span class="badge bg-secondary skill-badge">SQLAlchemy</span>
-        <span class="badge bg-secondary skill-badge">Neo4j</span>
-        <span class="badge bg-secondary skill-badge">LangChain</span>
-        <span class="badge bg-secondary skill-badge">Docker</span>
+  <section id="about" class="py-5 bg-light">
+    <div class="container text-center">
+      <!-- Headline -->
+      <h2 class="mb-3">💡 Data Analyst & LLM Engineer</h2>
+      <p class="lead">Building end-to-end apps from data pipelines to polished dashboards & AI assistants</p>
+
+      <!-- Intro Paragraph -->
+      <p class="mt-4">
+        I am <strong>Shubham Gattani</strong>, based in Ahmedabad, Gujarat. After an early setback due to a spine
+        injury in <strong>IIT Delhi (2015)</strong>,
+        I restarted my journey at <strong>IIT Madras</strong>, completing a <strong>4 year BS in Data Science &
+          Applications</strong>
+        with a CGPA of <strong>9.8</strong>. Since then, I have worked as an <strong>LLM Intern at SGBC-IITM</strong>
+        and as a
+        <strong>Data Analyst at CODE-IITM</strong>, contributing to projects ranging from
+        <em>knowledge graphs and RAG-based chatbots</em> to <em>production-ready web apps</em>.
+      </p>
+
+      <!-- Highlight sentence -->
+      <!-- <p class="fw-bold">
+        I specialize in bridging data science and full-stack development, delivering solutions that are both
+        analytically rigorous and production-ready.
+      </p> -->
+
+      <!-- Skill Badges -->
+      <div class="mt-4">
+        <span class="badge bg-primary m-1">Python</span>
+        <!-- <span class="badge bg-secondary m-1">Flask</span> -->
+        <!-- <span class="badge bg-success m-1">SQLAlchemy</span> -->
+        <span class="badge bg-info text-dark m-1">PostgreSQL</span>
+        <span class="badge bg-warning text-dark m-1">Neo4j</span>
+        <span class="badge bg-danger m-1">LangChain</span>
+        <!-- <span class="badge bg-dark m-1">HuggingFace</span> -->
+        <span class="badge bg-primary m-1">Vue.js</span>
+        <span class="badge bg-secondary m-1">Docker</span>
+        <!-- <span class="badge bg-success m-1">APIs</span> -->
+        <span class="badge bg-info text-dark m-1">Data Analysis</span>
+        <span class="badge bg-warning text-dark m-1"> Data Visualization</span>
       </div>
     </div>
   </section>
@@ -107,7 +131,7 @@
       {
         title: "Discourse-Viz — Student Engagement Dashboard",
         description: "Full-stack analytics dashboard: ETL pipeline, REST APIs, interactive visualizations.",
-        tech: "Python, Flask, Pandas, Neo4j".replaceAll(","," |"),
+        tech: "Python, Flask, Pandas, Neo4j".replaceAll(",", " |"),
         image: "/assets/images/discourse-viz.png",
         readMoreLink: "projects/discourse-viz.html",
         githubLink: "https://github.com/YOUR_REPO"
@@ -115,15 +139,15 @@
       {
         title: "Harnessing LLMs for Neuroscience Knowledge Exploration",
         description: "Scraped & processed thousands of PubMed XML papers, used LLaMA-3.1 to extract normalized entities & relations, and built a Neo4j knowledge graph for research discovery.",
-        tech: "Python multiprocessing, JSON, NLP, Prompt Engineering, Web Scraping, Neo4j, Named Entity Recognition (NER)".replaceAll(","," |"),
-        image: "/assets/images/Knowledge-graph-project.png",
-        readMoreLink: "projects/Knowledge-graph-project.html",
+        tech: "Python multiprocessing, JSON, NLP, Prompt Engineering, Web Scraping, Neo4j, Named Entity Recognition (NER)".replaceAll(",", " |"),
+        image: "/assets/images/knowledge-graph-project.png",
+        readMoreLink: "projects/knowledge-graph-project.html",
         githubLink: "https://github.com/YOUR_REPO"
       },
       {
         title: "CODE-Chapter (SPOC Dashboard)",
         description: "This web application enables college SPOCs (Single Point of Contact) to manage CODE Chapter related activities for their institution. SPOCs can view their own information, monitor student progress (courses enrolled, quiz marks), receive announcements, and request profile changes via an external form.",
-        tech: "Flask, Flask-Security-Too, SQLAlchemy 2, PostgreSQL, OTP based login, Docker, Google Cloud Logging, Flask-Migrate/Alembic, VueJS, Bootstrap, Responsive Frontend".replaceAll(","," |"),
+        tech: "Flask, Flask-Security-Too, SQLAlchemy 2, PostgreSQL, OTP based login, Docker, Google Cloud Logging, Flask-Migrate/Alembic, VueJS, Bootstrap, Responsive Frontend".replaceAll(",", " |"),
         image: "/assets/images/code-chapter.png",
         readMoreLink: "projects/code-chapter.html",
         githubLink: "https://github.com/Shubham-Gattani/CODE-CHAPTER"
@@ -131,7 +155,7 @@
       {
         title: "IITM Support Chatbot: RAG-powered Student Policy Assistant",
         description: "A lightweight web app that answers IITM student queries about program rules, grading, and policies using a Retrieval-Augmented Generation pipeline. It ingests official Google Docs, retrieves the most relevant sections, and generates context-aware answers. Used FAISS + HF embeddings & implemented header-aware chunking that improved retrieval accuracy from ~33% to ~80%.",
-        tech: "Flask, Google OAuth 2.0 with Authlib, Vector search with FAISS, langchain/HuggingFace Embeddings, BeautifulSoup (bs4), Document preprocessing, Document Chunking, Groq API".replaceAll(","," |"),
+        tech: "Flask, Google OAuth 2.0 with Authlib, Vector search with FAISS, langchain/HuggingFace Embeddings, BeautifulSoup (bs4), Document preprocessing, Document Chunking, Groq API".replaceAll(",", " |"),
         image: "/assets/images/support-chatbot.png",
         readMoreLink: "projects/support-chatbot.html",
         githubLink: "https://github.com/Shubham-Gattani/support-chatbot"

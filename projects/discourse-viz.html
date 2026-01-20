@@ -90,10 +90,10 @@
       <h3>Key Technical Decisions</h3>
       <ul>
         <li>
-          <strong>Dual-scheduler architecture</strong> (full reset vs. incremental refresh) → <strong>Tradeoff:</strong> complexity vs. avoiding unnecessary full recomputes 99% of days → <strong>Outcome:</strong> ~30min full reset on trimester dates, 5min incremental refreshes on other days
+          <strong>Dual-scheduler architecture</strong> (full reset vs. incremental refresh) → <strong>Reason:</strong> To avoid unnecessary full recomputes 99% of days → <strong>Outcome:</strong> ~30min full reset on trimester dates, 5min incremental refreshes on other days
         </li>
         <li>
-          <strong>Log-normalized</strong> z-scores for user ranking instead of raw counts → Reason: log transform reduces outlier bias, z-score enables statistical comparison across heterogeneous courses → Outcome: top-10 users ranked fairly despite varying activity volume per course
+          <strong>Log-normalized</strong> scores for user ranking instead of raw counts → <strong>Reason:</strong> Log transform reduces outlier bias, especially for individual courses where there are a few super-users which can shadow the contribution of other aspiring users → <strong>Outcome:</strong> top-10 users ranked fairly despite varying activity volume per course
         </li>
         <li>
           <strong>Nested dictionary</strong> keyed by term-course instead of relational database → <strong>Reason:</strong> prototype phase, fast iteration, in-memory access → <strong>Outcome:</strong> simple data slicing for UI

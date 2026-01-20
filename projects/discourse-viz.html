@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project Title | Shubham Gattani</title>
+  <title>Discourse-viz | Shubham Gattani</title>
 
   <!-- Bootstrap CDN -->
   <link
@@ -18,32 +18,35 @@
 
     <!-- ================= Project Header ================= -->
     <section class="mb-5">
-      <h1 class="mb-2">Project Title</h1>
+      <h1 class="mb-2">Discourse-viz</h1>
 
       <p class="lead text-muted">
-        One-line impact statement explaining what this project solves and why it matters.
+        A Flask web platform that visualizes user engagement metrics across IIT Madras online courses by aggregating Discourse forum activity data with automated daily refresh and trimester-based reset cycles.
       </p>
 
       <!-- Tech Stack Badges -->
       <div class="mb-3">
         <span class="badge bg-primary">Python</span>
         <span class="badge bg-secondary">Flask</span>
-        <span class="badge bg-success">PostgreSQL</span>
-        <span class="badge bg-warning text-dark">LLM</span>
-        <span class="badge bg-info text-dark">Vue.js</span>
+        <span class="badge bg-success">Pandas</span>
+        <span class="badge bg-warning text-dark">Altair</span>
+        <span class="badge bg-info text-dark">APScheduler</span>
+        <span class="badge bg-info text-dark">Google OAuth</span>
+        <span class="badge bg-info text-dark">Authlib</span>
+        <span class="badge bg-info text-dark">Discourse API</span>
       </div>
 
       <!-- Links -->
       <div>
-        <a href="https://github.com/your-repo" target="_blank" class="btn btn-outline-dark btn-sm me-2">
-          GitHub
+        <a href="https://github.com/Shubham-Gattani/discourse-vizz" target="_blank" class="btn btn-outline-dark btn-sm me-2">
+          GitHub repo
         </a>
-        <a href="#" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+        <!-- <a href="#" target="_blank" class="btn btn-outline-primary btn-sm me-2">
           Live Demo
         </a>
         <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm">
           Slides
-        </a>
+        </a> -->
       </div>
     </section>
 
@@ -51,8 +54,7 @@
     <section class="mb-5">
       <h3>Problem & Context</h3>
       <p>
-        Briefly describe the real-world problem, who faced it, and why it mattered.
-        Keep this section concise and factual.
+        IIT Madras Online Degree programs span multiple courses and trimesters, with students engaging via discourse platform to discuss course content and collaborate. Instructors and administrators needed automated, centralized visibility into top-performing students and course-specific engagement patterns without manual data extraction. This is especially useful to analyse data for those students who are applying for TAship or mentorship for projects. Data refresh requirements differ by situation: full recalculation needed at trimester start-dates to detect new courses/users, while incremental updates are sufficient on regular days.
       </p>
     </section>
 
@@ -60,10 +62,13 @@
     <section class="mb-5">
       <h3>My Role & Scope</h3>
       <ul>
-        <li>Designed and implemented the backend using Flask and SQLAlchemy</li>
-        <li>Built data pipelines and preprocessing logic</li>
-        <li>Developed frontend components and UI interactions</li>
-        <li>Handled deployment and production configuration</li>
+        <li>Built and owned the end-to-end ETL pipeline (load Discourse data, transform with weighted metrics/log-normalized z-scores, and process into course/term user engagement views) with scheduled full resets and daily incremental refresh.</li>
+        <li>Designed two-tier data refresh architecture: full system reset on trimester starts (Jan 1, May 1, Sep 1), and incremental daily refresh on all other dates using Background APScheduler</li>
+        <li>Implemented multi-level data transformation pipeline: raw event counts (using pivot tables) → unnormalized z-scores → log-normalized z-scores for ranking active users</li>
+        <li>Built course-specific and platform-wide engagement analytics using weighted metrics applied to user actions (topics created, replies, solutions, likes given etc)</li>
+        <li>Integrated Discourse API query execution layer with pagination, rate-limit retry logic (3s-15s incremental backoff), and structured error handling to surface failures</li>
+        <li>Architected role-based user access with Google OAuth (login_required decorators) and structured data isolation across course-term-user hierarchies in nested dictionaries</li>
+        <li>Created Altair stacked bar chart visualizations for top-10 active users segmented by engagement type per course and term</li>
       </ul>
     </section>
 
@@ -71,10 +76,12 @@
     <section class="mb-5">
       <h3>Architecture & Approach</h3>
       <ul>
-        <li>Data ingestion via APIs / scraping</li>
-        <li>Processing and transformation using Pandas</li>
-        <li>REST APIs powering a Vue.js frontend</li>
-        <li>LLM integration / vector search (where applicable)</li>
+        <li>Data ingestion tier fetches from Discourse API using 4 parameterized queries</li>
+        <li>Global state management stores user_actions_dictionaries keyed by term->subjects->dataframe</li>
+        <li>Processor modules apply domain logic: crosstab raw metrics into action counts per user, apply weighted formulas, calculate z-scores, and rank users for visualization</li>
+        <li>Routes layer exposes API endpoints (/get_chart, /search_user, /user_details) that select and filter data from global state, triggering chart generation or JSON responses</li>
+        <li>Background scheduler enforces single-instance concurrent execution (max_instances=1, coalesce=True) to prevent race conditions on shared data structures</li>
+        <li>Logging infrastructure supports both Google Cloud Logging (GCP) for production and console fallback; structured logs include query IDs, terms, course names, and function name for easy debugging</li>
       </ul>
     </section>
 
@@ -83,15 +90,18 @@
       <h3>Key Technical Decisions</h3>
       <ul>
         <li>
-          Used <strong>header-aware chunking</strong> instead of naive text splitting →
-          improved retrieval accuracy significantly.
+          <strong>Dual-scheduler architecture</strong> (full reset vs. incremental refresh) → <strong>Tradeoff:</strong> complexity vs. avoiding unnecessary full recomputes 99% of days → <strong>Outcome:</strong> ~30min full reset on trimester dates, 5min incremental refreshes on other days
         </li>
         <li>
-          Chose <strong>FAISS</strong> for fast similarity search with low latency.
+          <strong>Log-normalized</strong> z-scores for user ranking instead of raw counts → Reason: log transform reduces outlier bias, z-score enables statistical comparison across heterogeneous courses → Outcome: top-10 users ranked fairly despite varying activity volume per course
         </li>
         <li>
-          Modular Flask app-factory pattern for scalability.
+          <strong>Nested dictionary</strong> keyed by term-course instead of relational database → <strong>Reason:</strong> prototype phase, fast iteration, in-memory access → <strong>Outcome:</strong> simple data slicing for UI
         </li>
+        <li>
+            <strong>Incremental backoff</strong> retry for Discourse API rate limiting (3s-15s delays) → <strong>Reason: </strong>graceful degradation under high load without data corruption → <strong>Outcome:</strong> reduced failed queries during peak sync windows
+        </li>
+        <li><strong>State backup</strong> before full system reset with conditional fallback route → <strong>Reason:</strong> reset failures should not break user-facing data access → <strong>Outcome:</strong> users continue seeing previous term data while developers troubleshoot</li>
       </ul>
     </section>
 
@@ -99,9 +109,10 @@
     <section class="mb-5">
       <h3>Results & Impact</h3>
       <ul>
-        <li>Improved answer accuracy from ~33% to ~80%</li>
-        <li>Deployed internally for student / admin usage</li>
-        <li>Positive feedback from stakeholders</li>
+        <li>Enabled instructors to identify top-10 active students per course per trimester via interactive stacked bar charts segmented by 6 engagement dimensions (topics created, replies, likes, solutions, days visited)</li>
+        <li>Automated end-to-end data refresh pipeline: Eliminated manual Discourse report extraction with scheduled jobs requiring no operator intervention</li>
+        <li>Supported course discovery automation: System detects new courses at trimester boundaries, categorizing them against 40+ predefined course listings (Foundation, Diploma, Degree, L4/L5 specializations)</li>
+        <li>Integrated multi-stage observability: Structured logging across 6 namespaces (query execution, chart generation, user stats, weekly trends, overall engagement, course-specific) aids rapid incident diagnosis</li>
       </ul>
     </section>
 
@@ -129,13 +140,19 @@
       <h3>Screenshots</h3>
 
       <img
-        src="../assets/images/discourse-viz.png"
+        src="../assets/images/project_images/discourse-viz/course-lists.png"
         class="img-fluid rounded shadow mb-3"
         alt="Screenshot 1"
       />
 
       <img
-        src="../assets/images/discourse-viz.png"
+        src="../assets/images/project_images/discourse-viz/overall-discourse-chart.png"
+        class="img-fluid rounded shadow mb-3"
+        alt="Screenshot 2"
+      />
+
+      <img
+        src="../assets/images/project_images/discourse-viz/weekwise-engagement-chart.png"
         class="img-fluid rounded shadow mb-3"
         alt="Screenshot 2"
       />
@@ -143,11 +160,10 @@
 
     <!-- ================= Future Improvements ================= -->
     <section class="mb-5">
-      <h3>What I’d Improve Next</h3>
+      <h3>What I'd improve in future</h3>
       <ul>
-        <li>Add caching and background workers for scale</li>
-        <li>Improve UX with better loading states</li>
-        <li>Introduce monitoring and analytics</li>
+        <li>Migrate state management from in-memory nested dictionaries to Redis cache or just store them in GCS bucket as a pickle file: enable horizontal scaling, support multiple app instances, persist state across deployments (at present, the max number of concurrent users is ~50, so we would need to make these changes only when this number goes above 100)</li>
+        <li>Implement incremental database storage of query results: avoid redundant Discourse API calls, enable historical trend analysis beyond current 3-trimester window.</li>
       </ul>
     </section>
 

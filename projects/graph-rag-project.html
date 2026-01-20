@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Graph-based RAG for Neuroscience | Shubham Gattani</title>
+
+  <!-- Bootstrap CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body class="bg-light">
+
+  <div class="container py-5">
+
+    <!-- ================= Project Header ================= -->
+    <section class="mb-5">
+      <h1 class="mb-2">Graph-based RAG for Neuroscience Research</h1>
+
+      <p class="lead text-muted">
+        Built a knowledge graph–driven retrieval system to answer complex neuroscience questions with paragraph-level evidence and citations.
+      </p>
+
+      <!-- Tech Stack Badges -->
+      <div class="mb-3">
+        <span class="badge bg-primary">Python</span>
+        <span class="badge bg-secondary">Neo4j</span>
+        <span class="badge bg-success">Graph RAG</span>
+        <span class="badge bg-warning text-dark">LLMs (LLaMA-70B)</span>
+        <span class="badge bg-info text-dark">NLP / NER</span>
+      </div>
+    </section>
+
+    <!-- ================= Problem / Context ================= -->
+    <section class="mb-5">
+      <h3>Problem & Context</h3>
+      <p>
+        Traditional vector-based RAG systems work well for simple lookups but struggle with complex, multi-hop neuroscience queries.
+        They often rely on limited context, single-source retrieval, and lack clear traceability to original research papers.
+        This makes it difficult to generate reliable, evidence-backed answers in a domain where accuracy and citations are critical.
+      </p>
+    </section>
+
+    <!-- ================= Your Role ================= -->
+    <section class="mb-5">
+      <h3>My Role & Scope</h3>
+      <ul>
+        <li>Independently designed and built the complete data pipeline for a Graph-based RAG system</li>
+        <li>Scraped and structured neuroscience research papers from PMC in a paragraph-level hierarchy</li>
+        <li>Designed prompt-based pipelines using LLaMA-70B for claims, species, entity, and relationship extraction</li>
+        <li>Constructed and populated a Neo4j knowledge graph with entity and paragraph nodes</li>
+        <li>Enabled graph-based retrieval with explicit provenance and paragraph-level citations</li>
+      </ul>
+    </section>
+
+    <!-- ================= Architecture / Approach ================= -->
+    <section class="mb-5">
+      <h3>Architecture & Approach</h3>
+      <ul>
+        <li>Scraped neuroscience research papers (XML) from PMC and organized them into a structured filesystem</li>
+        <li>Extracted claims, contributions, and experimental species using prompt-engineered LLaMA-70B workflows</li>
+        <li>Performed domain-specific NER using LexiFuzz with NIF ontology at paragraph level</li>
+        <li>Extracted semantic relationships between entity pairs using LLMs and stored them as structured JSON</li>
+        <li>Injected entities and relationships into Neo4j, linking entities to exact source paragraphs</li>
+        <li>Answered user queries by identifying relevant entities, executing Cypher queries, and grounding responses in original text</li>
+      </ul>
+    </section>
+
+    <!-- ================= Key Technical Decisions ================= -->
+    <section class="mb-5">
+      <h3>Key Technical Decisions</h3>
+      <ul>
+        <li>
+          Modeled the graph with <strong>two node types</strong> (Entity and Paragraph) to preserve fine-grained provenance and traceability.
+        </li>
+        <li>
+          Used <strong>RELATED_TO</strong> relationships between entities and <strong>DESCRIBES</strong> edges to link entities to source paragraphs.
+        </li>
+        <li>
+          Chose paragraph-level processing instead of document-level extraction to improve accuracy and reduce hallucinations.
+        </li>
+        <li>
+          Combined ontology-based NER with fuzzy matching to balance precision and recall in a specialized domain.
+        </li>
+      </ul>
+    </section>
+
+    <!-- ================= Results & Impact ================= -->
+    <section class="mb-5">
+      <h3>Results & Impact</h3>
+      <ul>
+        <li>Enabled multi-hop, graph-based reasoning for complex neuroscience queries</li>
+        <li>Generated answers with explicit paragraph-level evidence and PMC references</li>
+        <li>Outperformed bio-specific LLMs (Bio-Mistral, SciLitLLM) in depth, rigor, and citation quality</li>
+        <li>Achieved significantly higher evaluation scores in zero-shot comparisons against GPT-4o</li>
+      </ul>
+    </section>
+
+    <!-- ================= Back Link ================= -->
+    <section>
+      <a href="../index.html" class="btn btn-link">
+        ← Back to Projects
+      </a>
+    </section>
+
+  </div>
+
+</body>
+</html>

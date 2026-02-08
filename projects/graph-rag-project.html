@@ -1,18 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Graph-based RAG for Neuroscience | Shubham Gattani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harnessing LLMs for Neuroscience Knowledge Exploration - Shubham Gattani</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/custom.css">
+  <style>
+    /* Screenshot Container Styling */
+    .screenshot-container {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+    }
 
-  <!-- Bootstrap CDN -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+    .screenshot-image {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .screenshot-image:hover {
+      transform: scale(1.02);
+    }
+
+    .screenshot-caption {
+      font-size: 0.95rem;
+      color: #7f8c8d;
+      margin-bottom: 0;
+      font-style: italic;
+      border-top: 1px solid #bdc3c7;
+      padding-top: 1rem;
+    }
+
+    .screenshot-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 
 <body class="bg-light">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">Shubham Gattani</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation" style="background-color: #ecf0f1;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <div class="container py-5">
 
@@ -21,7 +82,8 @@
       <h1 class="mb-2">Graph-based RAG for Neuroscience Research</h1>
 
       <p class="lead text-muted">
-        Built a knowledge graph–driven retrieval system to answer complex neuroscience questions with paragraph-level evidence and citations.
+        Built a knowledge graph-driven retrieval system to answer complex neuroscience questions with paragraph-level
+        evidence and citations.
       </p>
 
       <!-- Tech Stack Badges -->
@@ -38,9 +100,12 @@
     <section class="mb-5">
       <h3>Problem & Context</h3>
       <p>
-        Traditional vector-based RAG systems work well for simple lookups but struggle with complex, multi-hop neuroscience queries.
-        They often rely on limited context, single-source retrieval, and lack clear traceability to original research papers.
-        This makes it difficult to generate reliable, evidence-backed answers in a domain where accuracy and citations are critical.
+        Traditional vector-based RAG systems work well for simple lookups but struggle with complex, multi-hop
+        neuroscience queries.
+        They often rely on limited context, single-source retrieval, and lack clear traceability to original research
+        papers.
+        This makes it difficult to generate reliable, evidence-backed answers in a domain where accuracy and citations
+        are critical.
       </p>
     </section>
 
@@ -50,9 +115,13 @@
       <ul>
         <li>Independently designed and built the complete data pipeline for a Graph-based RAG system</li>
         <li>Scraped and structured neuroscience research papers from PMC in a paragraph-level hierarchy</li>
-        <li>Designed prompt-based pipelines using LLaMA-70B for claims, species, entity, and relationship extraction</li>
+        <li>Designed prompt-based pipelines using LLaMA-70B for claims, species, entity, and relationship extraction
+        </li>
         <li>Constructed and populated a Neo4j knowledge graph with entity and paragraph nodes</li>
         <li>Enabled graph-based retrieval with explicit provenance and paragraph-level citations</li>
+        <li>
+          Scaled large-scale information extraction by implementing Python multiprocessing, enabling parallel processing of hundreds of research papers during LLM-based extraction workflows.
+        </li>
       </ul>
     </section>
 
@@ -65,7 +134,8 @@
         <li>Performed domain-specific NER using LexiFuzz with NIF ontology at paragraph level</li>
         <li>Extracted semantic relationships between entity pairs using LLMs and stored them as structured JSON</li>
         <li>Injected entities and relationships into Neo4j, linking entities to exact source paragraphs</li>
-        <li>Answered user queries by identifying relevant entities, executing Cypher queries, and grounding responses in original text</li>
+        <li>Answered user queries by identifying relevant entities, executing Cypher queries, and grounding responses in
+          original text</li>
       </ul>
     </section>
 
@@ -74,16 +144,23 @@
       <h3>Key Technical Decisions</h3>
       <ul>
         <li>
-          Modeled the graph with <strong>two node types</strong> (Entity and Paragraph) to preserve fine-grained provenance and traceability.
+          Modeled the graph with <strong>two node types</strong> (Entity and Paragraph) to preserve fine-grained
+          provenance and traceability.
         </li>
         <li>
-          Used <strong>RELATED_TO</strong> relationships between entities and <strong>DESCRIBES</strong> edges to link entities to source paragraphs.
+          Used <strong>RELATED_TO</strong> relationships between entities and <strong>DESCRIBES</strong> edges to link
+          entities to source paragraphs.
         </li>
         <li>
-          Chose paragraph-level processing instead of document-level extraction to improve accuracy and reduce hallucinations.
+          Chose paragraph-level processing instead of document-level extraction to improve accuracy and reduce
+          hallucinations.
         </li>
         <li>
-          Combined ontology-based NER with fuzzy matching to balance precision and recall in a specialized domain.
+          Combined ontology-based <strong>NER with fuzzy matching</strong> to balance precision and recall in a specialized domain.
+        </li>
+        <li>
+          Implemented a <strong>high-throughput multiprocessing pipeline</strong> to process thousands of research papers efficiently.
+          By running up to <strong>100 parallel processes</strong>, each handling independent LLaMA-70B inference, the system significantly reduced end-to-end extraction time.
         </li>
       </ul>
     </section>
@@ -99,14 +176,103 @@
       </ul>
     </section>
 
+    <!-- ================= Screenshots ================= -->
+    <section class="mb-5">
+      <h3>Screenshots & Visualizations</h3>
+
+      <!-- Screenshot 1: What is Graph RAG -->
+      <div class="screenshot-container">
+        <div class="screenshot-title">What is Graph RAG?</div>
+        <img src="../assets/images/project_images/graph-rag-project/what-is-graph-rag.png"
+          class="screenshot-image" alt="Graph RAG Concept"
+          data-bs-toggle="modal" data-bs-target="#screenshotModal1" />
+        <p class="screenshot-caption">
+          🔍 Conceptual diagram showing how Graph RAG differs from traditional vector-based retrieval. 
+          Graph RAG enables multi-hop reasoning by traversing entity relationships in a knowledge graph, 
+          providing more comprehensive and contextually rich answers.
+        </p>
+      </div>
+
+      <!-- Screenshot 2: Pipeline Architecture -->
+      <div class="screenshot-container">
+        <div class="screenshot-title">Data Processing Pipeline</div>
+        <img src="../assets/images/project_images/graph-rag-project/my-work-pipeline.png"
+          class="screenshot-image" alt="Processing Pipeline"
+          data-bs-toggle="modal" data-bs-target="#screenshotModal2" />
+        <p class="screenshot-caption">
+          ⚙️ End-to-end pipeline architecture showing the flow from paper scraping to knowledge graph construction. 
+          Includes parallel processing with 100 concurrent workers, LLM-based entity extraction, and Neo4j integration.
+        </p>
+      </div>
+
+      <!-- Screenshot 3: Query Answering -->
+      <div class="screenshot-container">
+        <div class="screenshot-title">Graph-based Query Answering</div>
+        <img src="../assets/images/project_images/graph-rag-project/answering-using-graph-rag.png"
+          class="screenshot-image" alt="Query Answering Process"
+          data-bs-toggle="modal" data-bs-target="#screenshotModal3" />
+        <p class="screenshot-caption">
+          💡 Example of how the system answers complex neuroscience queries by traversing the knowledge graph, 
+          retrieving relevant paragraphs, and generating evidence-backed responses with citations to source papers.
+        </p>
+      </div>
+    </section>
+
     <!-- ================= Back Link ================= -->
     <section>
-      <a href="../index.html" class="btn btn-link">
-        ← Back to Projects
-      </a>
+      <a href="../index.html#projects" class="btn btn-primary">← Back to Projects</a>
     </section>
 
   </div>
 
+  <!-- Screenshot Modals for Enlarged View -->
+  <div class="modal fade" id="screenshotModal1" tabindex="-1" aria-labelledby="screenshotLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="screenshotLabel1">What is Graph RAG?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="../assets/images/project_images/graph-rag-project/what-is-graph-rag.png" 
+               alt="Graph RAG Concept" style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="screenshotModal2" tabindex="-1" aria-labelledby="screenshotLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="screenshotLabel2">Data Processing Pipeline</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="../assets/images/project_images/graph-rag-project/my-work-pipeline.png" 
+               alt="Processing Pipeline" style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="screenshotModal3" tabindex="-1" aria-labelledby="screenshotLabel3" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="screenshotLabel3">Graph-based Query Answering</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="../assets/images/project_images/graph-rag-project/answering-using-graph-rag.png" 
+               alt="Query Answering Process" style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

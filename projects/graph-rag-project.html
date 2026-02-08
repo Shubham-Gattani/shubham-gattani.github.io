@@ -32,19 +32,20 @@
     }
 
     .screenshot-caption {
-      font-size: 0.95rem;
-      color: #7f8c8d;
+      font-size: 1.15rem;
+      color: #2c3e50;
       margin-bottom: 0;
       font-style: italic;
       border-top: 1px solid #bdc3c7;
       padding-top: 1rem;
+      line-height: 1.7;
     }
 
     .screenshot-title {
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: #2c3e50;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
   </style>
 </head>
@@ -82,8 +83,7 @@
       <h1 class="mb-2">Graph-based RAG for Neuroscience Research</h1>
 
       <p class="lead text-muted">
-        Built a knowledge graph-driven retrieval system to answer complex neuroscience questions with paragraph-level
-        evidence and citations.
+        Built a knowledge graph-driven retrieval system to answer complex neuroscience questions with paragraph-level evidence and citations.
       </p>
 
       <!-- Tech Stack Badges -->
@@ -96,83 +96,42 @@
       </div>
     </section>
 
-    <!-- ================= Problem / Context ================= -->
+    <!-- ================= Situation ================= -->
     <section class="mb-5">
-      <h3>Problem & Context</h3>
+      <h3>Situation</h3>
       <p>
-        Traditional vector-based RAG systems work well for simple lookups but struggle with complex, multi-hop
-        neuroscience queries.
-        They often rely on limited context, single-source retrieval, and lack clear traceability to original research
-        papers.
-        This makes it difficult to generate reliable, evidence-backed answers in a domain where accuracy and citations
-        are critical.
+        Traditional vector-based RAG systems work well for simple lookups but struggle with complex, multi-hop neuroscience queries. They often rely on limited context, single-source retrieval, and lack clear traceability to original research papers, making it difficult to generate reliable, evidence-backed answers in a domain where accuracy and citations are critical.
       </p>
     </section>
 
-    <!-- ================= Your Role ================= -->
+    <!-- ================= Task ================= -->
     <section class="mb-5">
-      <h3>My Role & Scope</h3>
+      <h3>Task</h3>
+      <p>
+        Independently design and build a complete data pipeline for a Graph-based RAG system to enable multi-hop reasoning with explicit provenance and paragraph-level citations for neuroscience research queries.
+      </p>
+    </section>
+
+    <!-- ================= Action ================= -->
+    <section class="mb-5">
+      <h3>Action</h3>
       <ul>
-        <li>Independently designed and built the complete data pipeline for a Graph-based RAG system</li>
-        <li>Scraped and structured neuroscience research papers from PMC in a paragraph-level hierarchy</li>
-        <li>Designed prompt-based pipelines using LLaMA-70B for claims, species, entity, and relationship extraction
-        </li>
-        <li>Constructed and populated a Neo4j knowledge graph with entity and paragraph nodes</li>
-        <li>Enabled graph-based retrieval with explicit provenance and paragraph-level citations</li>
-        <li>
-          Scaled large-scale information extraction by implementing Python multiprocessing, enabling parallel processing of hundreds of research papers during LLM-based extraction workflows.
-        </li>
+        <li><strong>Scraped and structured neuroscience papers</strong>: Fetched XML data from PMC and organized into paragraph-level hierarchies for fine-grained processing.</li>
+        <li><strong>Engineered LLM pipelines</strong>: Used prompt-based LLaMA-70B workflows for claims, species, entity, and relationship extraction at paragraph level.</li>
+        <li><strong>Implemented domain-specific NER</strong>: Combined LexiFuzz with NIF ontology and fuzzy matching to balance precision and recall in specialized neuroscience contexts.</li>
+        <li><strong>Constructed Neo4j knowledge graph</strong>: Modeled with Entity and Paragraph nodes, using RELATED_TO and DESCRIBES relationships for traceability.</li>
+        <li><strong>Scaled with multiprocessing</strong>: Enabled parallel processing of hundreds of papers using up to 100 concurrent workers for efficient LLM inference.</li>
+        <li><strong>Enabled graph-based retrieval</strong>: Queried via Cypher to identify entities, traverse relationships, and ground responses in original text with citations.</li>
       </ul>
     </section>
 
-    <!-- ================= Architecture / Approach ================= -->
+    <!-- ================= Result ================= -->
     <section class="mb-5">
-      <h3>Architecture & Approach</h3>
+      <h3>Result</h3>
       <ul>
-        <li>Scraped neuroscience research papers (XML) from PMC and organized them into a structured filesystem</li>
-        <li>Extracted claims, contributions, and experimental species using prompt-engineered LLaMA-70B workflows</li>
-        <li>Performed domain-specific NER using LexiFuzz with NIF ontology at paragraph level</li>
-        <li>Extracted semantic relationships between entity pairs using LLMs and stored them as structured JSON</li>
-        <li>Injected entities and relationships into Neo4j, linking entities to exact source paragraphs</li>
-        <li>Answered user queries by identifying relevant entities, executing Cypher queries, and grounding responses in
-          original text</li>
-      </ul>
-    </section>
-
-    <!-- ================= Key Technical Decisions ================= -->
-    <section class="mb-5">
-      <h3>Key Technical Decisions</h3>
-      <ul>
-        <li>
-          Modeled the graph with <strong>two node types</strong> (Entity and Paragraph) to preserve fine-grained
-          provenance and traceability.
-        </li>
-        <li>
-          Used <strong>RELATED_TO</strong> relationships between entities and <strong>DESCRIBES</strong> edges to link
-          entities to source paragraphs.
-        </li>
-        <li>
-          Chose paragraph-level processing instead of document-level extraction to improve accuracy and reduce
-          hallucinations.
-        </li>
-        <li>
-          Combined ontology-based <strong>NER with fuzzy matching</strong> to balance precision and recall in a specialized domain.
-        </li>
-        <li>
-          Implemented a <strong>high-throughput multiprocessing pipeline</strong> to process thousands of research papers efficiently.
-          By running up to <strong>100 parallel processes</strong>, each handling independent LLaMA-70B inference, the system significantly reduced end-to-end extraction time.
-        </li>
-      </ul>
-    </section>
-
-    <!-- ================= Results & Impact ================= -->
-    <section class="mb-5">
-      <h3>Results & Impact</h3>
-      <ul>
-        <li>Enabled multi-hop, graph-based reasoning for complex neuroscience queries</li>
-        <li>Generated answers with explicit paragraph-level evidence and PMC references</li>
-        <li>Outperformed bio-specific LLMs (Bio-Mistral, SciLitLLM) in depth, rigor, and citation quality</li>
-        <li>Achieved significantly higher evaluation scores in zero-shot comparisons against GPT-4o</li>
+        <li><strong>Enabled multi-hop reasoning</strong>: For complex neuroscience queries with explicit paragraph-level evidence and PMC references.</li>
+        <li><strong>Outperformed competitors</strong>: Surpassed bio-specific LLMs (Bio-Mistral, SciLitLLM) in depth, rigor, and citation quality.</li>
+        <li><strong>Achieved higher evaluation scores</strong>: In zero-shot comparisons against GPT-4o, demonstrating superior accuracy and reliability.</li>
       </ul>
     </section>
 
@@ -187,9 +146,7 @@
           class="screenshot-image" alt="Graph RAG Concept"
           data-bs-toggle="modal" data-bs-target="#screenshotModal1" />
         <p class="screenshot-caption">
-          🔍 Conceptual diagram showing how Graph RAG differs from traditional vector-based retrieval. 
-          Graph RAG enables multi-hop reasoning by traversing entity relationships in a knowledge graph, 
-          providing more comprehensive and contextually rich answers.
+          🔍 Conceptual diagram showing how Graph RAG differs from traditional vector-based retrieval. Graph RAG enables multi-hop reasoning by traversing entity relationships in a knowledge graph, providing more comprehensive and contextually rich answers.
         </p>
       </div>
 
@@ -200,8 +157,7 @@
           class="screenshot-image" alt="Processing Pipeline"
           data-bs-toggle="modal" data-bs-target="#screenshotModal2" />
         <p class="screenshot-caption">
-          ⚙️ End-to-end pipeline architecture showing the flow from paper scraping to knowledge graph construction. 
-          Includes parallel processing with 100 concurrent workers, LLM-based entity extraction, and Neo4j integration.
+          ⚙️ End-to-end pipeline architecture showing the flow from paper scraping to knowledge graph construction. Includes parallel processing with 100 concurrent workers, LLM-based entity extraction, and Neo4j integration.
         </p>
       </div>
 
@@ -212,8 +168,7 @@
           class="screenshot-image" alt="Query Answering Process"
           data-bs-toggle="modal" data-bs-target="#screenshotModal3" />
         <p class="screenshot-caption">
-          💡 Example of how the system answers complex neuroscience queries by traversing the knowledge graph, 
-          retrieving relevant paragraphs, and generating evidence-backed responses with citations to source papers.
+          💡 Example of how the system answers complex neuroscience queries by traversing the knowledge graph, retrieving relevant paragraphs, and generating evidence-backed responses with citations to source papers.
         </p>
       </div>
     </section>
@@ -230,13 +185,12 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="screenshotLabel1">What is Graph RAG?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img src="../assets/images/project_images/graph-rag-project/what-is-graph-rag.png" 
-               alt="Graph RAG Concept" style="width: 100%; height: auto;">
-        </div>
+        <h5 class="modal-title" id="screenshotLabel1">What is Graph RAG?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="../assets/images/project_images/graph-rag-project/what-is-graph-rag.png" 
+             alt="Graph RAG Concept" style="width: 100%; height: auto;">
       </div>
     </div>
   </div>
@@ -245,13 +199,12 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="screenshotLabel2">Data Processing Pipeline</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img src="../assets/images/project_images/graph-rag-project/my-work-pipeline.png" 
-               alt="Processing Pipeline" style="width: 100%; height: auto;">
-        </div>
+        <h5 class="modal-title" id="screenshotLabel2">Data Processing Pipeline</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="../assets/images/project_images/graph-rag-project/my-work-pipeline.png" 
+             alt="Processing Pipeline" style="width: 100%; height: auto;">
       </div>
     </div>
   </div>
@@ -260,13 +213,12 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="screenshotLabel3">Graph-based Query Answering</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img src="../assets/images/project_images/graph-rag-project/answering-using-graph-rag.png" 
-               alt="Query Answering Process" style="width: 100%; height: auto;">
-        </div>
+        <h5 class="modal-title" id="screenshotLabel3">Graph-based Query Answering</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="../assets/images/project_images/graph-rag-project/answering-using-graph-rag.png" 
+             alt="Query Answering Process" style="width: 100%; height: auto;">
       </div>
     </div>
   </div>

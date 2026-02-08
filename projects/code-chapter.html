@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODE Chapter SPOC Dashboard - Shubham Gattani</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/custom.css">
+    <style>
+        /* Screenshot Container Styling */
+        .screenshot-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .screenshot-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .screenshot-image:hover {
+            transform: scale(1.02);
+        }
+
+        .screenshot-caption {
+            font-size: 1.15rem;
+            color: #2c3e50;
+            margin-bottom: 0;
+            font-style: italic;
+            border-top: 1px solid #bdc3c7;
+            padding-top: 1rem;
+            line-height: 1.7;
+        }
+
+        .screenshot-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Gallery Grid for Multiple Screenshots */
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item-caption {
+            padding: 1rem;
+            background-color: #ffffff;
+        }
+
+        .gallery-item-caption h5 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .gallery-item-caption p {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin: 0;
+        }
+
+        /* Expandable Screenshot Modal */
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Shubham Gattani</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                style="background-color: #ecf0f1;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+
+        <!-- ================= Project Header ================= -->
+        <section class="mb-5">
+            <h1 class="mb-2">CODE Chapter SPOC Dashboard</h1>
+            <p class="lead text-muted">
+                A full-stack web application for managing CODE Chapter activities at IIT Madras, enabling SPOCs and
+                admins to oversee student progress, announcements, and support resources through a secure dashboard. <a
+                    href="https://github.com/Shubham-Gattani/CODE-CHAPTER" target="_blank">View on GitHub</a>
+            </p>
+            <!-- Tech Stack Badges -->
+            <div class="mb-3">
+                <span class="badge bg-primary">Python</span>
+                <span class="badge bg-secondary">Flask</span>
+                <span class="badge bg-success">SQLAlchemy</span>
+                <span class="badge bg-warning text-dark">Vue.js</span>
+                <span class="badge bg-info text-dark">Bootstrap</span>
+                <span class="badge bg-danger">Docker</span>
+                <span class="badge bg-light text-dark">PostgreSQL</span>
+                <span class="badge bg-dark">GCP</span>
+            </div>
+        </section>
+
+        <!-- ================= Situation ================= -->
+        <section class="mb-5">
+            <h3>Situation</h3>
+            <p>
+                IIT Madras' CODE Chapter SPOCs needed a centralized platform to manage student activities, monitor
+                progress, and communicate updates. Without a centralized system, the IITM faced fragmented data handling
+                and inefficient administrative processes while communicating to multiple institutions.
+            </p>
+        </section>
+
+        <!-- ================= Task ================= -->
+        <section class="mb-5">
+            <h3>Task</h3>
+            <p>
+                IIT Madras has started the "CODE-Chapter" initiative, in which, various Higher Educational institutes
+                across the world can enroll their students to attend the advanced courses offered by IIT Madras'
+                faculty. SPOC here means a <strong>"Single Point of Contact"</strong> i.e a single individual which
+                represents an entire college.<br><br>
+                My task was to <strong>develop a secure, user-friendly dashboard for SPOCs</strong> to access student
+                details, receive announcements, and manage profile changes, ensuring scalable management of CODE Chapter
+                operations.
+            </p>
+        </section>
+
+        <!-- ================= Action ================= -->
+        <section class="mb-5">
+            <h3>Action</h3>
+            <ul>
+                <li><strong>Built a robust backend with Flask and SQLAlchemy</strong>: Implemented user authentication
+                    via Flask-Security-Too, database migrations with Flask-Migrate, and email functionality with
+                    Flask-Mail for notifications, storing data in PostgreSQL for reliability.</li>
+                <li><strong>Developed an interactive frontend using Vue.js and Bootstrap</strong>: Created dynamic
+                    dashboards for viewing student courses, quiz marks, and announcements, with responsive design for
+                    seamless access across devices.</li>
+                <li><strong>Ensured security and scalability</strong>: Integrated role-based access control for SPOCs
+                    and admins, used Google Auth for secure logins, and deployed via Docker containers on GCP for
+                    production-grade performance.</li>
+                <li><strong>Collaborated with stakeholders</strong>: Integrated external Google Forms for profile change
+                    requests, demonstrating adaptability to institutional workflows and user needs.</li>
+                <li><strong>Implemented cloud-based logging with Google Cloud Logging</strong>: Enabled centralized
+                    monitoring and debugging of application events, improving troubleshooting efficiency in production
+                    deployments.</li>
+            </ul>
+        </section>
+
+        <!-- ================= Result ================= -->
+        <section class="mb-5">
+            <h3>Result</h3>
+            <ul>
+                <li>
+                    <strong>Streamlined administrative processes</strong>: Reduced time spent on manual data retrieval
+                    and updates by atleast<strong>50%</strong>, enabling SPOCs to focus on student engagement rather
+                    than paperwork.
+                </li>
+                <li>
+                    <strong>Enhanced oversight and communication</strong>: Provided real-time access to student progress
+                    for <strong>100s of students</strong> across institutions, improving decision-making accuracy and
+                    support response times.
+                </li>
+
+                <li>
+                    <strong>Achieved high reliability</strong>: Deployed on GCP, handling concurrent users (using
+                    gunicorn server) securely and ensuring data integrity through automated migrations and cloud based
+                    logging.
+                </li>
+
+            </ul>
+        </section>
+
+        <!-- ================= Screenshots ================= -->
+        <section class="mb-5">
+            <h2>Screenshots & Demo</h2>
+
+            <!-- Single Screenshot with Caption -->
+            <div class="screenshot-container">
+                <div class="screenshot-title">Home Page</div>
+                <img src="../assets/images/project_images/code-chapter/home-page.png" alt="Home Page"
+                    class="screenshot-image" data-bs-toggle="modal" data-bs-target="#screenshotModal1">
+                <p class="screenshot-caption">
+                    The main landing page providing an overview of the dashboard and quick access to key features. The dashboard is intentionally made less verbose UX friendly for non-technical users. 
+                </p>
+            </div>
+
+            <!-- Gallery of Multiple Screenshots -->
+            <div class="screenshot-gallery">
+                <div class="gallery-item">
+                    <img src="../assets/images/project_images/code-chapter/otp-based-login.png" alt="OTP-Based Login"
+                        data-bs-toggle="modal" data-bs-target="#screenshotModal2" style="cursor: pointer;">
+                    <div class="gallery-item-caption">
+                        <h5>OTP-Based Login</h5>
+                        <p>Secure authentication system using one-time passwords, which is sent to their mail-id.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../assets/images/project_images/code-chapter/spoc-profile-and-quick-links.png"
+                        alt="SPOC Profile and Quick Links" data-bs-toggle="modal" data-bs-target="#screenshotModal3"
+                        style="cursor: pointer;">
+                    <div class="gallery-item-caption">
+                        <h5>SPOC Profile and Quick Links</h5>
+                        <p>Personal profile section with shortcuts to student management and announcements, and quick links for profile-change request, FAQs and downloading MOUs</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../assets/images/project_images/code-chapter/student-details-page.png"
+                        alt="Student Details Page" data-bs-toggle="modal" data-bs-target="#screenshotModal4"
+                        style="cursor: pointer;">
+                    <div class="gallery-item-caption">
+                        <h5>Student Details Page</h5>
+                        <p>Detailed view of student information, courses, and their quiz performances, using an embedded iframe from Google Looker studio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= Future Improvements ================= -->
+        <section class="mb-5">
+            <h3>Future Improvements</h3>
+            <ul>
+                <li>Integrate machine learning for predictive student performance analysis</li>
+                <li>Add real-time chat for SPOC-student communication</li>
+                <li>Expand mobile app support for on-the-go access</li>
+            </ul>
+        </section>
+
+        <!-- ================= Back Link ================= -->
+        <section>
+            <a href="../index.html#projects" class="btn btn-primary">← Back to Projects</a>
+        </section>
+
+    </div>
+
+    <!-- Screenshot Modal for Enlarged View -->
+    <div class="modal fade" id="screenshotModal1" tabindex="-1" aria-labelledby="screenshotLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="screenshotLabel1">Home Page</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../assets/images/project_images/code-chapter/home-page.png" alt="Home Page">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="screenshotModal2" tabindex="-1" aria-labelledby="screenshotLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="screenshotLabel2">OTP-Based Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../assets/images/project_images/code-chapter/otp-based-login.png" alt="OTP-Based Login">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="screenshotModal3" tabindex="-1" aria-labelledby="screenshotLabel3" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="screenshotLabel3">SPOC Profile and Quick Links</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../assets/images/project_images/code-chapter/spoc-profile-and-quick-links.png"
+                        alt="SPOC Profile and Quick Links">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="screenshotModal4" tabindex="-1" aria-labelledby="screenshotLabel4" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="screenshotLabel4">Student Details Page</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../assets/images/project_images/code-chapter/student-details-page.png"
+                        alt="Student Details Page">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

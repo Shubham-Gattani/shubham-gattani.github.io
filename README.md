@@ -17,8 +17,8 @@ Visit the live site: [shubham-gattani.github.io](https://shubham-gattani.github.
 - `_config.yml` – GitHub Pages configuration
 
 ## 📬 Contact
-Feel free to reach out via [LinkedIn](https://www.linkedin.com/in/shubham-gattani) or [email](mailto:your-email@example.com).
+Feel free to reach out via [LinkedIn](https://www.linkedin.com/in/shubham-gattani) or [email](shubham29.iitd@gmail.com).
 
 ---
 
-Thanks for visiting! ✨
+Thanks for visiting!

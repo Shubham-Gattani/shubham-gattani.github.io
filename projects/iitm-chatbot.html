@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio case study for the official IIT Madras BS RAG chatbot project and Shubham Gattani's contributions as an Applied AI Engineer.">
+    <title>IITM BS RAG Chatbot - Shubham Gattani</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="custom.css">
+    <style>
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.25rem 0;
+        }
+
+        .private-repository {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.65rem 1.1rem;
+            color: #5a6c7d;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .team-note {
+            padding: 1.25rem 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 8px;
+        }
+
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(120px, 1fr));
+            gap: 0.65rem;
+            align-items: stretch;
+            margin: 2rem 0;
+        }
+
+        .pipeline-step {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            padding: 1rem;
+            text-align: center;
+            background: #f8f9fa;
+            border: 1px solid #bdc3c7;
+            border-top: 4px solid #3498db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            color: #2c3e50;
+        }
+
+        .pipeline-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -0.65rem;
+            top: 50%;
+            z-index: 2;
+            padding: 0 0.15rem;
+            color: #3498db;
+            background: white;
+            font-size: 1.3rem;
+            transform: translate(50%, -50%);
+        }
+
+        .pipeline-note {
+            padding: 1rem 1.25rem;
+            background: #eef7fd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .metric-card {
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.22);
+        }
+
+        .metric-card h4 {
+            margin-bottom: 0.35rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .metric-card p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 290px;
+            padding: 0.5rem;
+            object-fit: contain;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .gallery-item-caption {
+            flex: 1;
+            padding: 1.15rem;
+        }
+
+        .gallery-item-caption h5 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .gallery-item-caption p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal-dialog {
+            max-width: min(95vw, 1400px);
+        }
+
+        .modal-body img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .modal-title {
+            margin-bottom: 0;
+        }
+
+        .attribution {
+            padding: 1.25rem 1.5rem;
+            background: #fff8e1;
+            border-left: 4px solid #f1c40f;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1200px) {
+            .pipeline {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .pipeline-step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pipeline,
+            .metric-grid,
+            .screenshot-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+                height: auto;
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Shubham Gattani</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                style="background-color: #ecf0f1;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <section class="mb-5">
+            <h1 class="mb-2">IITM BS RAG Chatbot</h1>
+            <p class="lead text-muted">
+                An official IIT Madras team project that helps prospective learners find reliable information about
+                admissions, eligibility, fees, JEE-based entry, qualifier examinations, reattempts, courses, and
+                placements. My role is <strong>Applied AI Engineer — RAG &amp; Retrieval Systems</strong>.
+            </p>
+
+            <div class="project-actions">
+                <a class="btn btn-primary"
+                    href="https://iitm-chatbot-worker-140256174016.asia-south1.run.app/qa" target="_blank"
+                    rel="noopener noreferrer">Open Test Environment</a>
+                <span class="private-repository" aria-label="Source repository is private">🔒 Private repository</span>
+            </div>
+
+            <div class="mb-3" aria-label="Technology stack">
+                <span class="badge bg-warning text-dark">JavaScript</span>
+                <span class="badge bg-primary">Python</span>
+                <span class="badge bg-success">FastAPI</span>
+                <span class="badge bg-light text-dark">PostgreSQL</span>
+                <span class="badge bg-secondary">pgvector</span>
+                <span class="badge bg-info text-dark">Weaviate</span>
+                <span class="badge bg-dark">Ollama / BGE-M3</span>
+                <span class="badge bg-danger">Docker</span>
+                <span class="badge bg-primary">GCP Cloud Run</span>
+                <span class="badge bg-secondary">BigQuery</span>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h3>Situation</h3>
+            <p>
+                Information about the IIT Madras BS programs spans admissions, qualifier rules, fees, academic
+                policies, and several program-specific documents. A conversational interface could make this
+                information easier to access, but unreliable retrieval or unsupported LLM responses would reduce
+                trust in the system. When I joined, the chatbot already had query rewriting, Weaviate hybrid search,
+                answer generation, fact-checking, feedback logging, and a GCP deployment pipeline, but its overall
+                answer accuracy was approximately 60%.
+            </p>
+        </section>
+
+        <section class="mb-5">
+            <h3>Task</h3>
+            <p>
+                I joined the project in December 2025 as an <strong>Applied AI Engineer focused on RAG and retrieval
+                    systems</strong>. My primary responsibility was to improve answer and retrieval accuracy while
+                controlling LLM API costs and maintaining reliable local, test, and production deployment paths.
+            </p>
+            <div class="team-note">
+                <strong>Team structure:</strong> This is a four-person team project. My manager and I work on
+                development and deployment, while two team members focus on testing major chatbot releases.
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h3>Current RAG Pipeline</h3>
+            <div class="pipeline" aria-label="Chatbot request pipeline">
+                <div class="pipeline-step"><strong>User submits a question to <code>/answer</code></strong></div>
+                <div class="pipeline-step"><strong>Sanitize and rewrite the query</strong></div>
+                <div class="pipeline-step"><strong>Retrieve 2 Weaviate documents</strong></div>
+                <div class="pipeline-step"><strong>Retrieve 5 PostgreSQL FAQs in parallel</strong></div>
+                <div class="pipeline-step"><strong>Generate a grounded LLM answer</strong></div>
+                <div class="pipeline-step"><strong>Fact-check against retrieved context</strong></div>
+                <div class="pipeline-step"><strong>Return SSE response with references</strong></div>
+            </div>
+            <p class="pipeline-note">
+                <strong>Fast FAQ path:</strong> When a learner clicks a suggested FAQ, the stored answer is fetched by
+                FAQ ID and returned directly without query rewriting, answer generation, or another fact-checking LLM
+                call.
+            </p>
+        </section>
+
+        <section class="mb-5">
+            <h3>Action — My Contributions</h3>
+            <ul>
+                <li>
+                    <strong>Improved knowledge-base retrieval:</strong> Consolidated more than 55 fragmented files into
+                    19 topic-focused documents, added retrieval-oriented metadata and sample queries, refined query
+                    rewriting, and introduced stopword normalization.
+                </li>
+                <li>
+                    <strong>Upgraded the embedding pipeline:</strong> Migrated from <code>mxbai-embed-large</code> to
+                    multilingual <code>bge-m3</code>, introduced token-aware chunking, and fixed embedding failures
+                    caused by oversized or duplicated content.
+                </li>
+                <li>
+                    <strong>Designed a dual-retrieval architecture:</strong> Added a FastAPI service backed by
+                    PostgreSQL and pgvector for precise FAQ retrieval while retaining Weaviate for long-form document
+                    context.
+                </li>
+                <li>
+                    <strong>Implemented direct FAQ answers:</strong> Enabled users to click a suggested question and
+                    receive its official stored answer without spending tokens on another answer-generation call.
+                </li>
+                <li>
+                    <strong>Reduced latency and controlled cost:</strong> Reduced document retrieval from five to two
+                    higher-quality documents and parallelized Weaviate and PostgreSQL retrieval.
+                </li>
+                <li>
+                    <strong>Strengthened failure handling:</strong> Stopped answer generation when both retrieval
+                    sources provide no context, preserved service when either source remains healthy, and added
+                    defensive handling for malformed responses, partial results, and invalid embeddings.
+                </li>
+                <li>
+                    <strong>Built production observability:</strong> Added structured logging for retrieved documents,
+                    FAQ matches, original and final answers, token usage, pipeline-stage duration, and user feedback;
+                    made this data available through Google Cloud Logging, BigQuery, and Looker.
+                </li>
+                <li>
+                    <strong>Improved deployment reliability:</strong> Integrated the PostgreSQL FAQ API into Docker and
+                    Cloud Run, added controlled Weaviate reset behavior for embedding deployments, and resolved GCE
+                    Docker permission and persistent-volume ownership failures.
+                </li>
+                <li>
+                    <strong>Improved privacy and fallback UX:</strong> Added a warning against sharing personal
+                    information, concise program-specific contact links, and environment-aware documentation links for
+                    test and production deployments.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h3>Result</h3>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <h4>~60% → &gt;90%</h4>
+                    <p>Approximate overall answer-accuracy improvement</p>
+                </div>
+                <div class="metric-card">
+                    <h4>~10%</h4>
+                    <p>Approximate end-to-end latency reduction</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Stable</h4>
+                    <p>LLM API cost while accuracy increased substantially</p>
+                </div>
+            </div>
+            <ul>
+                <li>
+                    Increased retrieval precision through better document structure, metadata, query normalization,
+                    and a dedicated FAQ search path.
+                </li>
+                <li>
+                    Reduced unnecessary LLM context and avoided answer-generation calls for direct FAQ selections.
+                </li>
+                <li>
+                    Made retrieval quality, token usage, latency, fact-check outcomes, and feedback observable for
+                    evidence-based iteration.
+                </li>
+                <li>
+                    Improved operational resilience across local Docker, GCP test, and production environments.
+                </li>
+            </ul>
+            <p class="attribution">
+                <strong>Attribution:</strong> This is a team project. The complete system includes capabilities that
+                existed before I joined, including the original Weaviate RAG flow and LLM fact-checking layer. The
+                Action section above specifically describes my contributions.
+            </p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Screenshots &amp; Demo</h2>
+
+            <div class="screenshot-container">
+                <div class="screenshot-title">Grounded Answer with Document References</div>
+                <img src="assets/images/project_images/chatbot-images/happy-path.png"
+                    alt="Chatbot answering a qualifier fee question with a detailed response and document references"
+                    class="screenshot-image modal-trigger" data-title="Grounded Answer with Document References"
+                    data-bs-toggle="modal" data-bs-target="#screenshotModal">
+                <p class="screenshot-caption">
+                    The normal RAG path: the query is rewritten, relevant documents and FAQs are retrieved, the LLM
+                    produces a grounded answer, and the response is fact-checked before being displayed with its
+                    references.
+                </p>
+            </div>
+
+            <div class="screenshot-gallery">
+                <article class="gallery-item">
+                    <img src="assets/images/project_images/chatbot-images/direct-faq-path.png"
+                        alt="Clickable FAQ suggestions followed by a direct official FAQ answer"
+                        class="modal-trigger" data-title="Direct FAQ Path" data-bs-toggle="modal"
+                        data-bs-target="#screenshotModal">
+                    <div class="gallery-item-caption">
+                        <h5>Direct FAQ Path</h5>
+                        <p>Clicking a suggested question returns the official stored answer by FAQ ID without another
+                            LLM call.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="assets/images/project_images/chatbot-images/fact-check-rejection.png"
+                        alt="Chatbot safely rejecting a request for help cheating during the qualifier"
+                        class="modal-trigger" data-title="Safety Rejection" data-bs-toggle="modal"
+                        data-bs-target="#screenshotModal">
+                    <div class="gallery-item-caption">
+                        <h5>Safety Rejection</h5>
+                        <p>An academically dishonest query is rejected, while useful and relevant FAQ suggestions are
+                            still offered.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="assets/images/project_images/chatbot-images/prompt-injection-rejection.png"
+                        alt="Chatbot rejecting a prompt-injection attempt and showing safe FAQ suggestions"
+                        class="modal-trigger" data-title="Prompt-Injection Protection" data-bs-toggle="modal"
+                        data-bs-target="#screenshotModal">
+                    <div class="gallery-item-caption">
+                        <h5>Prompt-Injection Protection</h5>
+                        <p>The chatbot rejects instructions that attempt to alter its role or bypass its intended
+                            behavior.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="assets/images/project_images/chatbot-images/feedback-and-reporting.png"
+                        alt="Chatbot response with thumbs feedback and a detailed report form"
+                        class="modal-trigger" data-title="Feedback and Reporting" data-bs-toggle="modal"
+                        data-bs-target="#screenshotModal">
+                    <div class="gallery-item-caption">
+                        <h5>Feedback and Reporting</h5>
+                        <p>Users can rate an answer, report a problem category, and optionally provide additional
+                            context.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="assets/images/project_images/chatbot-images/logs-in-gcp.png"
+                        alt="Google Cloud Logs Explorer showing structured chatbot pipeline logs"
+                        class="modal-trigger" data-title="Structured Logs in Google Cloud" data-bs-toggle="modal"
+                        data-bs-target="#screenshotModal">
+                    <div class="gallery-item-caption">
+                        <h5>Structured Logs in Google Cloud</h5>
+                        <p>Pipeline events and diagnostic information can be inspected in Google Cloud Logs Explorer.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="assets/images/project_images/chatbot-images/seeing-logged-queries-in-bq.png"
+                        alt="BigQuery results showing logged chatbot queries, rewritten queries, responses, latency, and fact-check status"
+                        class="modal-trigger" data-title="Conversation Analytics in BigQuery" data-bs-toggle="modal"
+                        data-bs-target="#screenshotModal">
+                    <div class="gallery-item-caption">
+                        <h5>Conversation Analytics in BigQuery</h5>
+                        <p>Logged queries, rewrites, responses, latency, and fact-check outcomes are available for
+                            analysis.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h3>Future Improvements</h3>
+            <ul>
+                <li>
+                    Reduce average response latency from approximately 5.5 seconds to below 5 seconds, including by
+                    expanding synonym coverage so more common questions use the non-LLM query-rewrite path.
+                </li>
+                <li>
+                    Build a small Flask-based internal administration tool that allows the team to add and maintain
+                    PostgreSQL FAQs without editing seed data manually.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <a href="../index.html#projects" class="btn btn-primary">← Back to Projects</a>
+        </section>
+    </main>
+
+    <div class="modal fade" id="screenshotModal" tabindex="-1" aria-labelledby="screenshotModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="screenshotModalLabel">Project Screenshot</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="screenshotModalImage" src="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const modalTitle = document.getElementById("screenshotModalLabel");
+        const modalImage = document.getElementById("screenshotModalImage");
+
+        for (const screenshot of document.querySelectorAll(".modal-trigger")) {
+            screenshot.addEventListener("click", () => {
+                modalTitle.textContent = screenshot.dataset.title || "Project Screenshot";
+                modalImage.src = screenshot.src;
+                modalImage.alt = screenshot.alt;
+            });
+        }
+    </script>
+</body>
+
+</html>

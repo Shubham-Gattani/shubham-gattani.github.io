@@ -59,18 +59,35 @@
             font-size: 0.95rem;
             line-height: 1.45;
             color: #2c3e50;
+            box-shadow: 0 5px 14px rgba(44, 62, 80, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
+
+        .pipeline-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 9px 20px rgba(44, 62, 80, 0.14);
+        }
+
+        .pipeline-step:nth-child(1) { background: #f1f8ff; border-top-color: #8fc7f2; }
+        .pipeline-step:nth-child(2) { background: #f4f2ff; border-top-color: #aaa0e8; }
+        .pipeline-step:nth-child(3) { background: #f0fbf7; border-top-color: #8ed9bb; }
+        .pipeline-step:nth-child(4) { background: #fff9ed; border-top-color: #f0c979; }
+        .pipeline-step:nth-child(5) { background: #fff3f1; border-top-color: #efa59b; }
+        .pipeline-step:nth-child(6) { background: #f1f9fb; border-top-color: #8ecbd5; }
+        .pipeline-step:nth-child(7) { background: #f7f4fb; border-top-color: #c0a9df; }
 
         .pipeline-step:not(:last-child)::after {
             content: "→";
             position: absolute;
-            right: -0.65rem;
+            right: -1rem;
             top: 50%;
             z-index: 2;
-            padding: 0 0.15rem;
-            color: #3498db;
-            background: white;
-            font-size: 1.3rem;
+            padding: 0 0.25rem;
+            color: #111827;
+            background: transparent;
+            font-size: 1.9rem;
+            font-weight: 900;
+            line-height: 1;
             transform: translate(50%, -50%);
         }
 
@@ -79,6 +96,12 @@
             background: #eef7fd;
             border-radius: 8px;
             font-size: 1rem;
+        }
+
+        /* Keep the arrow glyph reliable across page encodings. */
+        .pipeline-step:not(:last-child)::after {
+            content: "\2192";
+            white-space: nowrap;
         }
 
         .metric-grid {

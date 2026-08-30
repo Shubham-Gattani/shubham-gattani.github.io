@@ -257,7 +257,7 @@
       projects.forEach(project => {
         const cardHTML = `
           <div class="col-md-6 project-column">
-            <article class="card project-card h-100 shadow-sm">
+            <article class="card project-card h-100 shadow-sm" data-project-link="${project.readMoreLink}" tabindex="0" role="link" aria-label="Read more about ${project.title}">
               <div class="project-image-frame">
                 <img src="${project.image}" class="card-img-top" alt="${project.title}" style="max-width:100%; height:auto;">
               </div>
@@ -274,6 +274,27 @@
           </div>
         `;
         container.innerHTML += cardHTML;
+      });
+
+      // Make the card itself open the same detail page as the Read more link.
+      // Links inside the card (especially GitHub/Code) remain independently clickable.
+      container.querySelectorAll('.project-card').forEach(card => {
+        const openProjectPage = () => {
+          window.open(card.dataset.projectLink, '_blank', 'noopener,noreferrer');
+        };
+
+        card.addEventListener('click', event => {
+          if (!event.target.closest('a')) {
+            openProjectPage();
+          }
+        });
+
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openProjectPage();
+          }
+        });
       });
     }
 

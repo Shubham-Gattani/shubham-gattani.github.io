@@ -141,6 +141,13 @@
             margin: 2rem 0;
         }
 
+        .featured-screenshot .screenshot-image {
+            display: block;
+            width: 75%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
         .gallery-item {
             display: flex;
             flex-direction: column;
@@ -218,6 +225,10 @@
             .metric-grid,
             .screenshot-gallery {
                 grid-template-columns: 1fr;
+            }
+
+            .featured-screenshot .screenshot-image {
+                width: 100%;
             }
 
             .gallery-item img {
@@ -417,7 +428,7 @@
         <section class="mb-5">
             <h2>Screenshots &amp; Demo</h2>
 
-            <div class="screenshot-container">
+            <div class="screenshot-container featured-screenshot">
                 <div class="screenshot-title">Grounded Answer with Document References</div>
                 <img src="../assets/images/project_images/chatbot-images/happy-path.png"
                     alt="Chatbot answering a qualifier fee question with a detailed response and document references"
